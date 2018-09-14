@@ -26,16 +26,16 @@ public class LoginController {
         return modelAndView;
     }
 
-    @GetMapping("/signup")
-    public ModelAndView signup() {
+    @GetMapping("/register")
+    public ModelAndView register() {
         ModelAndView modelAndView = new ModelAndView();
         User user = new User();
         modelAndView.addObject("user", user);
-        modelAndView.setViewName("signup");
+        modelAndView.setViewName("register");
         return modelAndView;
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/register")
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         User userExists = mongoUserDetailsService.findByUsername(user.getEmail());
@@ -46,7 +46,7 @@ public class LoginController {
         }
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getFieldError());
-            modelAndView.setViewName("signup");
+            modelAndView.setViewName("register");
         } else {
             mongoUserDetailsService.saveUser(user);
             modelAndView.addObject("successMessage", "User has been registered successfully");
