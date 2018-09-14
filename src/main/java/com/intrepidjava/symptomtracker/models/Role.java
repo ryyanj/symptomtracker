@@ -9,11 +9,11 @@ import java.util.List;
 public class Role {
 
     @Id
-    public String id;
+    private String id;
 
-    public String role;
+    private String role;
 
-    public List<String> privileges;
+    private List<String> privileges;
 
     public String getId() {
         return id;

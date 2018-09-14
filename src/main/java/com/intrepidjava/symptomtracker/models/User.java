@@ -12,21 +12,27 @@ import java.util.Set;
 public class User {
 
     @Id
-    public String id;
+    private String id;
+
+    @NotEmpty
+    private String firstname;
+
+    @NotEmpty
+    private String lastname;
 
     @NotEmpty
     @Email
-    public String email;
+    private String email;
 
     @NotEmpty
-    public String password;
+    private String password;
 
-    public String contact;
+    private String contact;
 
-    public List<String> symptoms;
+    private List<String> symptoms;
 
     @DBRef
-    public Set<Role> roles;
+    private Set<Role> roles;
 
     public String getId() {
         return id;
@@ -34,6 +40,22 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getEmail() {
@@ -80,6 +102,8 @@ public class User {
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", contact='" + contact + '\'' +
