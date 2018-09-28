@@ -6,12 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,8 +81,8 @@ public class LoginController {
     }
 
     @PostMapping("/addSymptom")
-    public ModelAndView addSymptom() {
-
+    public ModelAndView addSymptom(@RequestBody String str , Principal principal) {
+        System.out.println(principal);
         symptoms.add("dog");
         return new ModelAndView("redirect:/dashboard");
     }
