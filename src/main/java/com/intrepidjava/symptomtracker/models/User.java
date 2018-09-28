@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -29,7 +30,7 @@ public class User {
 
     private String contact;
 
-    private List<String> symptoms;
+    private List<String> symptoms = new ArrayList<>();
 
     @DBRef
     private Set<Role> roles;

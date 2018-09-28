@@ -53,4 +53,9 @@ public class MongoUserDetailsService implements UserDetailsService {
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));
         userRepository.save(user);
     }
+
+    public void addSymptom(User user, String symptom) {
+        user.getSymptoms().add(symptom);
+        userRepository.save(user);
+    }
 }

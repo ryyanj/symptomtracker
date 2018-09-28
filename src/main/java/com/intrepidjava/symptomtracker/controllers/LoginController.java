@@ -20,8 +20,6 @@ public class LoginController {
     @Autowired
     private MongoUserDetailsService mongoUserDetailsService;
 
-    List<String> symptoms = new ArrayList<>();
-
     @GetMapping("/login")
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
@@ -68,7 +66,7 @@ public class LoginController {
         modelAndView.addObject("currentUser", user);
         modelAndView.addObject("fullName", "Welcome " + user.getEmail());
         modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin RoleRepository");
-        modelAndView.addObject("symptoms",symptoms);
+        modelAndView.addObject("symptoms",user.getSymptoms());
         modelAndView.setViewName("dashboard");
         return modelAndView;
     }
@@ -82,8 +80,8 @@ public class LoginController {
 
     @PostMapping("/addSymptom")
     public ModelAndView addSymptom(@RequestBody String str , Principal principal) {
-        System.out.println(principal);
-        symptoms.add("dog");
+        User user = mongoUserDetailsService.findByUsername(principal.getName());
+        mongoUserDetailsService.addSymptom(user,str.split("=")[1]);
         return new ModelAndView("redirect:/dashboard");
     }
 
