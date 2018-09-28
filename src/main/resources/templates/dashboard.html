@@ -145,9 +145,11 @@
       <form th:action="@{/addSymptom}"  method="post">
         <div class="input-group">
           <div class="input-group-prepend">
-            <button class="btn btn-primary btn-block" type="submit" >add</button>
+            <button class="btn btn-primary btn-block" type="submit" >ADD SYMPTOMS</button>
           </div>
-        <textarea class="form-control" aria-label="With textarea" name="symptom" required="required"></textarea>
+          <div class="col-xs-2">
+            <input  class="form-control" placeholder="Enter Symptom" name="symptom">
+          </div>
       </div>
       </form>
       <hr>
@@ -156,8 +158,8 @@
         <P>add some symptoms</P>
       </div>
       <div th:if="${!symptoms.isEmpty()}">
-        <ul class="list-group">
-          <li th:each="symptom:${symptoms}" th:text="${symptom}"></li>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item col-xs-2" th:each="symptom:${symptoms}" th:text="${symptom}"></li>
         </ul>
       </div>
       <!--symptom list end-->
