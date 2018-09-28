@@ -142,32 +142,25 @@
       </ol>
 
       <!-- Page Content -->
-      <h1>Add symptoms</h1>
+      <form th:action="@{/addSymptom}" method="post">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <button class="btn btn-primary btn-block" type="submit">add</button>
+          </div>
+        <textarea class="form-control" aria-label="With textarea" name="symptom"></textarea>
+      </div>
+      </form>
       <hr>
       <!--symptom list begin-->
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12 col-sm-8 col-md-6">
-            <form>
-              <div class="row">
-                <div class="form-group">
-                  <label>New Item:</label>
-                  <input type="text" name="item" id="add">
-                  <input type="button" id="addbtn" name="addbtn" value="Add" class="btn btn-primary btn-sm" />
-                </div>
-              </div>
-              <div class="form-group">
-                <h5>List:</h5>
-                <hr>
-                <ul id="list" class="list-group">
-                </ul>
-              </div>
-            </form>
-          </div>
-        </div>
+      <div th:if="${symptoms.isEmpty()}">
+        <P>add some symptoms</P>
+      </div>
+      <div th:if="${!symptoms.isEmpty()}">
+        <ul class="list-group">
+          <li th:each="symptom:${symptoms}" th:text="${symptom}"></li>
+        </ul>
       </div>
       <!--symptom list end-->
-      <p>This is a great starting point for new custom pages.</p>
 
     </div>
     <!-- /.container-fluid -->

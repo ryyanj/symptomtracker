@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class LoginController {
@@ -65,12 +67,23 @@ public class LoginController {
         modelAndView.addObject("currentUser", user);
         modelAndView.addObject("fullName", "Welcome " + user.getEmail());
         modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin RoleRepository");
+        List<String> symptoms = new ArrayList<>();
+        symptoms.add("cats");
+        modelAndView.addObject("symptoms",symptoms);
         modelAndView.setViewName("dashboard");
         return modelAndView;
     }
 
     @GetMapping({"/","/home"})
     public ModelAndView home() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("home");
+        return modelAndView;
+    }
+
+    @PostMapping("/addSymptom")
+    public ModelAndView addSymptom() {
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("home");
         return modelAndView;
