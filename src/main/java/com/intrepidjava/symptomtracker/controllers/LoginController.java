@@ -49,7 +49,7 @@ public class LoginController {
             System.out.println(bindingResult.getFieldError());
             modelAndView.setViewName("register");
         } else {
-            mongoUserDetailsService.saveUser(user);
+            mongoUserDetailsService.registerUser(user);
             modelAndView.addObject("successMessage", "User has been registered successfully");
             modelAndView.addObject("user", new User());
             modelAndView.setViewName("login");

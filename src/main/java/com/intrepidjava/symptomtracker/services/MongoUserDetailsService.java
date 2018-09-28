@@ -47,7 +47,7 @@ public class MongoUserDetailsService implements UserDetailsService {
         return userRepository.findByEmail(username);
     }
 
-    public void saveUser(User user) {
+    public void registerUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         Role userRole = roleRepository.findByRole("ADMIN");
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));

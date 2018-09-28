@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -30,7 +31,7 @@ public class User {
 
     private String contact;
 
-    private List<String> symptoms = new ArrayList<>();
+    private Set<String> symptoms = new HashSet<>();
 
     @DBRef
     private Set<Role> roles;
@@ -83,11 +84,11 @@ public class User {
         this.contact = contact;
     }
 
-    public List<String> getSymptoms() {
+    public Set<String> getSymptoms() {
         return symptoms;
     }
 
-    public void setSymptoms(List<String> symptoms) {
+    public void setSymptoms(Set<String> symptoms) {
         this.symptoms = symptoms;
     }
 
