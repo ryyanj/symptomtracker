@@ -6,33 +6,35 @@
 
 <body id="page-top">
 
-    <div class="container-fluid">
+<div class="container-fluid">
 
-      <!-- Page Content -->
-      <form th:action="@{/addSymptom}"  method="post">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <button class="btn btn-primary btn-block" type="submit" >ADD SYMPTOMS</button>
-          </div>
-          <div class="col-xs-2">
-            <input  class="form-control" placeholder="Enter Symptom" name="symptom">
-          </div>
+  <section layout:fragment="content">
+    <!-- Page Content -->
+    <form th:action="@{/addSymptom}"  method="post">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <button class="btn btn-primary btn-block" type="submit" >ADD SYMPTOMS</button>
+        </div>
+        <div class="col-xs-2">
+          <input  class="form-control" placeholder="Enter Symptom" name="symptom">
+        </div>
       </div>
-      </form>
-      <hr>
-      <!--symptom list begin-->
-      <div th:if="${symptoms.isEmpty()}">
-        <P>add some symptoms</P>
-      </div>
-      <div th:if="${!symptoms.isEmpty()}">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item col-xs-2" th:each="symptom:${symptoms}" th:text="${symptom}"></li>
-        </ul>
-      </div>
-      <!--symptom list end-->
-
+    </form>
+    <hr>
+    <!--symptom list begin-->
+    <div th:if="${symptoms.isEmpty()}">
+      <P>add some symptoms</P>
     </div>
-    <!-- /.container-fluid -->
+    <div th:if="${!symptoms.isEmpty()}">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item col-xs-2" th:each="symptom:${symptoms}" th:text="${symptom}"></li>
+      </ul>
+    </div>
+    <!--symptom list end-->
+  </section>
+
+</div>
+<!-- /.container-fluid -->
 
 </body>
 
