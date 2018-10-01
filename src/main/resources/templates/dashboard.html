@@ -3,29 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 
-  <section layout:fragment="content">
-    <!-- Page Content -->
-    <form th:action="@{/addSymptom}"  method="post">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <button class="btn btn-primary btn-block" type="submit" >ADD SYMPTOMS</button>
-        </div>
-        <div class="col-xs-2">
-          <input  class="form-control" placeholder="Enter Symptom" name="symptom">
-        </div>
-      </div>
-    </form>
-    <hr>
-    <!--symptom list begin-->
-    <div th:if="${symptoms.isEmpty()}">
-      <P>add some symptoms</P>
-    </div>
-    <div th:if="${!symptoms.isEmpty()}">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item col-xs-2" th:each="symptom:${symptoms}" th:text="${symptom}"></li>
-      </ul>
-    </div>
-    <!--symptom list end-->
-  </section>
+
 
 </html>

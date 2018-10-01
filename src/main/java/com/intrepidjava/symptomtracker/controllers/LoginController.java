@@ -66,7 +66,6 @@ public class LoginController {
         modelAndView.addObject("currentUser", user);
         modelAndView.addObject("fullName", "Welcome " + user.getEmail());
         modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin RoleRepository");
-        modelAndView.addObject("symptoms",user.getSymptoms());
         modelAndView.setViewName("dashboard");
         return modelAndView;
     }
@@ -75,6 +74,15 @@ public class LoginController {
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("home");
+        return modelAndView;
+    }
+
+    @GetMapping("/addSymptom")
+    public ModelAndView addSymptom() {
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = mongoUserDetailsService.findByUsername(auth.getName());
+        modelAndView.addObject("symptoms",user.getSymptoms());
         return modelAndView;
     }
 
