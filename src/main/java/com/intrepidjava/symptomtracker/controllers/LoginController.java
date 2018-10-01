@@ -77,7 +77,7 @@ public class LoginController {
         return modelAndView;
     }
 
-    @GetMapping("/addSymptom")
+    @GetMapping("/addsymptom")
     public ModelAndView addSymptom() {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -86,7 +86,7 @@ public class LoginController {
         return modelAndView;
     }
 
-    @PostMapping("/addSymptom")
+    @PostMapping("/addsymptom")
     public ModelAndView addSymptom(@RequestBody String str , Principal principal) {
         User user = mongoUserDetailsService.findByUsername(principal.getName());
         mongoUserDetailsService.addSymptom(user,str.split("=")[1]);
