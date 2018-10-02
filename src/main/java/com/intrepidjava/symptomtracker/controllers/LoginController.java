@@ -90,7 +90,7 @@ public class LoginController {
     public ModelAndView addSymptom(@RequestBody String str , Principal principal) {
         User user = mongoUserDetailsService.findByUsername(principal.getName());
         mongoUserDetailsService.addSymptom(user,str.split("=")[1]);
-        return new ModelAndView("redirect:/dashboard");
+        return new ModelAndView("redirect:/addsymptom");
     }
 
 
