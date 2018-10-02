@@ -93,5 +93,14 @@ public class LoginController {
         return new ModelAndView("redirect:/addsymptom");
     }
 
+    @GetMapping("/removesymptom")
+    public ModelAndView removeSymptom() {
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = mongoUserDetailsService.findByUsername(auth.getName());
+        modelAndView.addObject("symptoms",user.getSymptoms());
+        return modelAndView;
+    }
+
 
 }
