@@ -38,26 +38,18 @@
 
 <section layout:fragment="content">
     <!-- Page Content -->
-    <div class="container">
-        <h1>Custom Checkboxes</h1></br>
-
-        <label class="customcheck">One
-            <input type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-        </label>
-        <label class="customcheck">Two
-            <input type="checkbox">
-            <span class="checkmark"></span>
-        </label>
-        <label class="customcheck">Three
-            <input type="checkbox">
-            <span class="checkmark"></span>
-        </label>
-        <label class="customcheck">Four
-            <input type="checkbox">
-            <span class="checkmark"></span>
-        </label>
-    </div>
+    <form th:action="@{/removesymptom}"  method="post">
+        <div class="input-group-prepend">
+            <button class="btn btn-primary btn-block" type="submit" >REMOVE SYMPTOMS</button>
+        </div>
+        <div th:if="${!symptoms.isEmpty()}">
+            <label class="customcheck" th:each="symptom:${symptoms}" >
+                <input type="checkbox" name="param" th:value=${symptom}>
+                <p th:text="${symptom}"></p>
+                <span class="checkmark"></span>
+            </label>
+        </div>
+    </form>
 </section>
 
 </html>

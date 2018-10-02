@@ -58,4 +58,9 @@ public class MongoUserDetailsService implements UserDetailsService {
         user.getSymptoms().add(symptom);
         userRepository.save(user);
     }
+
+    public void removeSymptoms(User user, List<String> symptoms) {
+        user.getSymptoms().removeAll(symptoms);
+        userRepository.save(user);
+    }
 }

@@ -102,5 +102,17 @@ public class LoginController {
         return modelAndView;
     }
 
+    @PostMapping("/removesymptom")
+    public ModelAndView removeSymptom(@RequestBody String str , Principal principal) {
+        User user = mongoUserDetailsService.findByUsername(principal.getName());
+        String[] pairs = str.split("&");
+        List<String> symptoms = new ArrayList<>();
+        for(int i = 0; i < pairs.length; i++) {
+            symptoms.add(pairs[i].split("=")[1]);
+        }
+        mongoUserDetailsService.removeSymptoms(user,symptoms);
+        return new ModelAndView("redirect:/removesymptom");
+    }
+
 
 }
