@@ -38,13 +38,13 @@
 
 <section layout:fragment="content">
     <!-- Page Content -->
-    <form th:action="@{/removesymptom}"  method="post">
+    <form th:action="@{/removesymptom}"  method="post" enctype="text/plain">
         <div class="input-group-prepend">
             <button class="btn btn-primary btn-block" type="submit" >REMOVE SYMPTOMS</button>
         </div>
         <div th:if="${!symptoms.isEmpty()}">
             <label class="customcheck" th:each="symptom:${symptoms}" >
-                <input type="checkbox" name="param" th:value=${symptom}>
+                <input type="checkbox" name="param" th:value="${symptom}">
                 <p th:text="${symptom}"></p>
                 <span class="checkmark"></span>
             </label>

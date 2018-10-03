@@ -89,7 +89,7 @@ public class LoginController {
     @PostMapping("/addsymptom")
     public ModelAndView addSymptom(@RequestBody String str , Principal principal) {
         User user = mongoUserDetailsService.findByUsername(principal.getName());
-        mongoUserDetailsService.addSymptom(user,str.split("=")[1]);
+        mongoUserDetailsService.addSymptom(user,str.split("=")[1].trim());
         return new ModelAndView("redirect:/addsymptom");
     }
 
@@ -108,7 +108,7 @@ public class LoginController {
         String[] pairs = str.split("&");
         List<String> symptoms = new ArrayList<>();
         for(int i = 0; i < pairs.length; i++) {
-            symptoms.add(pairs[i].split("=")[1]);
+            symptoms.add(pairs[i].split("=")[1].trim());
         }
         mongoUserDetailsService.removeSymptoms(user,symptoms);
         return new ModelAndView("redirect:/removesymptom");
