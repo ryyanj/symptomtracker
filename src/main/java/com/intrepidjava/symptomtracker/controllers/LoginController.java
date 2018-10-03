@@ -65,6 +65,7 @@ public class LoginController {
         User user = mongoUserDetailsService.findByUsername(auth.getName());
         modelAndView.addObject("currentUser", user);
         modelAndView.addObject("fullName", "Welcome " + user.getEmail());
+        modelAndView.addObject("symptoms",user.getSymptoms());
         modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin RoleRepository");
         modelAndView.setViewName("dashboard");
         return modelAndView;
