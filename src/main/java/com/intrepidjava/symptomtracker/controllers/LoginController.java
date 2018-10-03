@@ -115,5 +115,20 @@ public class LoginController {
         return new ModelAndView("redirect:/removesymptom");
     }
 
+    @GetMapping("/recordsymptom")
+    public ModelAndView recordSymptom(@RequestParam String param , Principal principal) {
+        User user = mongoUserDetailsService.findByUsername(principal.getName());
+        String[] params = param.split(",");
+        List<String> symptoms = new ArrayList<>();
+        for(int i = 0; i < params.length; i++) {
+            symptoms.add(params[i].trim());
+        }
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        modelAndView.addObject("symptoms",symptoms);
+        modelAndView.setViewName("recordsymptom");
+        return modelAndView;
+    }
+
 
 }
