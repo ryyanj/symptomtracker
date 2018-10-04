@@ -12,7 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class LoginController {
@@ -109,7 +111,7 @@ public class LoginController {
         String[] pairs = str.split("&");
         List<String> symptoms = new ArrayList<>();
         for(int i = 0; i < pairs.length; i++) {
-            symptoms.add(pairs[i].split("=")[1].trim());
+            symptoms.add(pairs[i].split("=")[1].trim().replaceAll("\\+"," "));
         }
         mongoUserDetailsService.removeSymptoms(user,symptoms);
         return new ModelAndView("redirect:/removesymptom");
@@ -129,6 +131,26 @@ public class LoginController {
         modelAndView.setViewName("recordsymptom");
         return modelAndView;
     }
+
+    @PostMapping("/recordsymptom")
+    public ModelAndView recordSymptomPost(@RequestBody String str , Principal principal) {
+        User user = mongoUserDetailsService.findByUsername(principal.getName());
+        String[] pairs = str.split("&");
+        Map<String,Integer> symptomMap = new HashMap<>();
+
+        for(int i = 0; i < pairs.length; i++) {
+            String[] pair = pairs[i].split("=");
+            symptomMap.put(cleanString(pair[0]),Integer.parseInt(cleanString(pair[1])));
+        }
+        mongoUserDetailsService.addEvent(user,symptomMap);
+        return new ModelAndView("redirect:/dashboard");
+    }
+
+    private String cleanString(String str) {
+        return str.trim().replaceAll("\\+"," ");
+    }
+
+
 
 
 }

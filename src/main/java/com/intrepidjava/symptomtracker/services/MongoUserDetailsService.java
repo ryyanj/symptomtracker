@@ -1,7 +1,9 @@
 package com.intrepidjava.symptomtracker.services;
 
+import com.intrepidjava.symptomtracker.models.Event;
 import com.intrepidjava.symptomtracker.models.Role;
 import com.intrepidjava.symptomtracker.models.User;
+import com.intrepidjava.symptomtracker.repositories.EventRepository;
 import com.intrepidjava.symptomtracker.repositories.RoleRepository;
 import com.intrepidjava.symptomtracker.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class MongoUserDetailsService implements UserDetailsService {
@@ -25,6 +24,9 @@ public class MongoUserDetailsService implements UserDetailsService {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private EventRepository eventRepository;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -62,5 +64,12 @@ public class MongoUserDetailsService implements UserDetailsService {
     public void removeSymptoms(User user, List<String> symptoms) {
         user.getSymptoms().removeAll(symptoms);
         userRepository.save(user);
+    }
+
+    public void addEvent(User user, Map<String,Integer> eventMap) {
+        Event event = new Event();
+        event.setUsername(user.getEmail());
+        event.setSymptom(eventMap);
+        eventRepository.save(event);
     }
 }
