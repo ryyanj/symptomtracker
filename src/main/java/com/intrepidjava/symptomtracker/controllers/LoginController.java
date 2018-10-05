@@ -136,19 +136,22 @@ public class LoginController {
     public ModelAndView recordSymptomPost(@RequestBody String str , Principal principal) {
         User user = mongoUserDetailsService.findByUsername(principal.getName());
         String[] pairs = str.split("&");
-        Map<String,Integer> symptomMap = new HashMap<>();
+        Map<String,String> map = new HashMap<>();
 
         for(int i = 0; i < pairs.length; i++) {
             String[] pair = pairs[i].split("=");
-            symptomMap.put(cleanString(pair[0]),Integer.parseInt(cleanString(pair[1])));
+            map.put(cleanString(pair[0]),cleanString(pair[1]));
         }
-        mongoUserDetailsService.addEvent(user,symptomMap);
+        mongoUserDetailsService.addEvent(user,map);
         return new ModelAndView("redirect:/dashboard");
     }
 
     private String cleanString(String str) {
         return str.trim().replaceAll("\\+"," ");
     }
+
+    //lsof -i tcp:8080
+    //kill -9 pid
 
 
 

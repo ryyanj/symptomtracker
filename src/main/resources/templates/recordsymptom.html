@@ -58,8 +58,40 @@
                     <option>10</option>
                 </select>
             </div>
+            <!--location content-->
+            <div id="divSample" class="hideClass invisible">Latitude:
+                <input type="text" id="Latitude" name="Latitude" value="">
+                <input type="text" id="Longitude" name="Longitude" value="">
+            </div>
         </form>
     </div>
+</section>
+
+<section layout:fragment="js">
+    <script type="text/javascript">
+
+    getLocationConstant();
+
+    function getLocationConstant() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
+        } else {
+            alert("Your browser or device doesn't support Geolocation");
+        }
+    }
+
+    // If we have a successful location update
+    function onGeoSuccess(event) {
+        document.getElementById("Latitude").value = event.coords.latitude;
+        document.getElementById("Longitude").value = event.coords.longitude;
+    }
+
+    // If something has gone wrong with the geolocation request
+    function onGeoError(event) {
+        alert("Error code " + event.code + ". " + event.message);
+    }
+
+    </script>
 </section>
 
 </html>

@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 @Service
@@ -66,9 +67,22 @@ public class MongoUserDetailsService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public void addEvent(User user, Map<String,Integer> eventMap) {
+    public void addEvent(User user, Map<String,String> eventMap) {
         Event event = new Event();
         event.setUsername(user.getEmail());
+        event.setUserid(user.getId());
+        event.setTimestamp(new Timestamp(System.currentTimeMillis()));
+
+        if(eventMap.containsKey("latitude")) {
+            event.setLatitue(eventMap.get("latitude"));
+            eventMap.remove("latitude");
+        }
+
+        if(eventMap.containsKey("longitude")) {
+            event.setLatitue(eventMap.get("longitude"));
+            eventMap.remove("longitude");
+        }
+
         event.setSymptom(eventMap);
         eventRepository.save(event);
     }

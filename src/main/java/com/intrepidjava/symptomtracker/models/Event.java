@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +19,17 @@ public class Event {
     private String username;
 
     @NotEmpty
-    private Map<String,Integer> symptom = new HashMap<>();
+    private String userid;
+
+    @NotNull
+    private Timestamp timestamp;
+
+    @NotEmpty
+    private Map<String,String> symptom = new HashMap<>();
+
+    private String latitue;
+
+    private String longitude;
 
     public String getId() {
         return id;
@@ -35,12 +47,44 @@ public class Event {
         this.username = username;
     }
 
-    public Map<String, Integer> getSymptom() {
+    public Map<String, String> getSymptom() {
         return symptom;
     }
 
-    public void setSymptom(Map<String, Integer> symptom) {
+    public void setSymptom(Map<String, String> symptom) {
         this.symptom = symptom;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public String getLatitue() {
+        return latitue;
+    }
+
+    public void setLatitue(String latitue) {
+        this.latitue = latitue;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
 }
