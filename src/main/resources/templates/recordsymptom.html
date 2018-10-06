@@ -74,23 +74,22 @@
     getLocationConstant();
 
     function getLocationConstant() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
-        } else {
-            alert("Your browser or device doesn't support Geolocation");
-        }
+        $.getJSON('https://ipinfo.io/geo', function(response) {
+        var loc = response.loc.split(',');
+        var coords = {
+            latitude: loc[0],
+            longitude: loc[1]
+        };
+        do_something(coords);
+        });
     }
 
     // If we have a successful location update
-    function onGeoSuccess(event) {
-        document.getElementById("Latitude").value = event.coords.latitude;
-        document.getElementById("Longitude").value = event.coords.longitude;
+    function do_something(coords) {
+        document.getElementById("Latitude").value = coords.latitude;
+        document.getElementById("Longitude").value = coords.longitude;
     }
 
-    // If something has gone wrong with the geolocation request
-    function onGeoError(event) {
-        alert("Error code " + event.code + ". " + event.message);
-    }
 
     </script>
 </section>
