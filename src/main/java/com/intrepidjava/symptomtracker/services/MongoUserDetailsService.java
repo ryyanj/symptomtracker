@@ -73,14 +73,14 @@ public class MongoUserDetailsService implements UserDetailsService {
         event.setUserid(user.getId());
         event.setTimestamp(new Timestamp(System.currentTimeMillis()));
 
-        if(eventMap.containsKey("latitude")) {
-            event.setLatitue(eventMap.get("latitude"));
-            eventMap.remove("latitude");
+        if(eventMap.containsKey("Latitude")) {
+            event.setLatitude(eventMap.get("Latitude"));
+            eventMap.remove("Latitude");
         }
 
-        if(eventMap.containsKey("longitude")) {
-            event.setLatitue(eventMap.get("longitude"));
-            eventMap.remove("longitude");
+        if(eventMap.containsKey("Longitude")) {
+            event.setLongitude(eventMap.get("Longitude"));
+            eventMap.remove("Longitude");
         }
 
         event.setSymptom(eventMap);

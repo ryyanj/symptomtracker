@@ -27,7 +27,7 @@ public class Event {
     @NotEmpty
     private Map<String,String> symptom = new HashMap<>();
 
-    private String latitue;
+    private String latitude;
 
     private String longitude;
 
@@ -71,12 +71,12 @@ public class Event {
         this.userid = userid;
     }
 
-    public String getLatitue() {
-        return latitue;
+    public String getLatitude() {
+        return latitude;
     }
 
-    public void setLatitue(String latitue) {
-        this.latitue = latitue;
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
     }
 
     public String getLongitude() {
