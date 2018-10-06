@@ -3,18 +3,12 @@ package com.intrepidjava.symptomtracker.controllers;
 import com.intrepidjava.symptomtracker.models.User;
 import com.intrepidjava.symptomtracker.services.MongoUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 
 @RestController
 public class LoginController {
