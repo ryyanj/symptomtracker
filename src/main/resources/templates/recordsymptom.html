@@ -39,7 +39,7 @@
 <section layout:fragment="content">
     <!-- Page Content -->
     <div th:if="${!symptoms.isEmpty()}">
-        <form th:action="@{/recordsymptom}"  method="post">
+        <form th:action="@{/recordevent}"  method="post">
             <div class="input-group-prepend">
                 <button class="btn btn-primary btn-block" type="submit" >Track Symptom</button>
             </div>

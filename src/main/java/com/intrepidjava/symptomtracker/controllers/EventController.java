@@ -25,8 +25,8 @@ public class EventController {
     @Autowired
     private EventService eventService;
 
-    @GetMapping("/recordsymptom")
-    public ModelAndView recordSymptomGet(@RequestParam String param) {
+    @GetMapping("/recordevent")
+    public ModelAndView getRecordEvent(@RequestParam String param) {
         String[] params = param.split(",");
         List<String> symptoms = new ArrayList<>();
         for(int i = 0; i < params.length; i++) {
@@ -38,8 +38,8 @@ public class EventController {
         return modelAndView;
     }
 
-    @PostMapping("/recordsymptom")
-    public ModelAndView recordSymptomPost(@RequestBody String str , Principal principal) {
+    @PostMapping("/recordevent")
+    public ModelAndView postRecordEvent(@RequestBody String str , Principal principal) {
         User user = mongoUserDetailsService.findByUsername(principal.getName());
         String[] pairs = str.split("&");
         Map<String,String> map = new HashMap<>();

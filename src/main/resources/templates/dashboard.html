@@ -42,7 +42,7 @@
     <div th:if="${symptoms.isEmpty()}">
         <a th:href="@{/addsymptom}">you need to add some symptoms</a>
     </div>
-    <form th:action="@{/recordsymptom}"  method="get" enctype="text/plain">
+    <form th:action="@{/recordevent}"  method="get" enctype="text/plain">
         <div class="input-group-prepend">
             <button class="btn btn-primary btn-block" type="submit" >TRACK SYMPTOMS</button>
         </div>
