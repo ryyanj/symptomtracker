@@ -77,7 +77,10 @@
                 <a class="dropdown-item" href="#">Settings</a>
                 <a class="dropdown-item" href="#">Activity Log</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+                <form th:action="@{/logout}" method="POST">
+                    <input type="submit" value="Logout" class="dropdown-item"  style="cursor:pointer" href="#" data-toggle="modal" data-target="#logoutModal"></input>
+                </form>
+
             </div>
         </li>
     </ul>
