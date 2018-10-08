@@ -3,10 +3,7 @@ package com.intrepidjava.symptomtracker.controllers;
 import com.intrepidjava.symptomtracker.models.User;
 import com.intrepidjava.symptomtracker.services.EventService;
 import com.intrepidjava.symptomtracker.services.MongoUserDetailsService;
-import com.intrepidjava.symptomtracker.services.SymptomService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,7 +31,7 @@ public class EventController {
         }
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("symptoms",symptoms);
-        modelAndView.setViewName("recordsymptom");
+        modelAndView.setViewName("recordevent");
         return modelAndView;
     }
 
