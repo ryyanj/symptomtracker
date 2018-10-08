@@ -2,6 +2,7 @@ package com.intrepidjava.symptomtracker.controllers;
 
 import com.intrepidjava.symptomtracker.models.User;
 import com.intrepidjava.symptomtracker.services.MongoUserDetailsService;
+import com.intrepidjava.symptomtracker.services.SymptomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +20,9 @@ public class SymptomController {
 
     @Autowired
     private MongoUserDetailsService mongoUserDetailsService;
+
+    @Autowired
+    private SymptomService symptomService;
 
 
 
@@ -48,7 +52,7 @@ public class SymptomController {
     @PostMapping("/addsymptom")
     public ModelAndView addSymptom(@RequestBody String str , Principal principal) {
         User user = mongoUserDetailsService.findByUsername(principal.getName());
-        mongoUserDetailsService.addSymptom(user,str.split("=")[1].trim());
+        symptomService.addSymptom(user,str.split("=")[1].trim());
         return new ModelAndView("redirect:/addsymptom");
     }
 
@@ -69,7 +73,7 @@ public class SymptomController {
         for(int i = 0; i < pairs.length; i++) {
             symptoms.add(pairs[i].split("=")[1].trim().replaceAll("\\+"," "));
         }
-        mongoUserDetailsService.removeSymptoms(user,symptoms);
+        symptomService.removeSymptoms(user,symptoms);
         return new ModelAndView("redirect:/removesymptom");
     }
 

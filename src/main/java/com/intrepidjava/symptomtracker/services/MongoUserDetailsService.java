@@ -57,16 +57,6 @@ public class MongoUserDetailsService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public void addSymptom(User user, String symptom) {
-        user.getSymptoms().add(symptom);
-        userRepository.save(user);
-    }
-
-    public void removeSymptoms(User user, List<String> symptoms) {
-        user.getSymptoms().removeAll(symptoms);
-        userRepository.save(user);
-    }
-
     public void addEvent(User user, Map<String,String> eventMap) {
         Event event = new Event();
         event.setUsername(user.getEmail());
