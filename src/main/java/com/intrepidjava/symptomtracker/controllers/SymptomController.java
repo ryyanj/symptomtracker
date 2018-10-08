@@ -11,9 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class SymptomController {
@@ -76,45 +74,5 @@ public class SymptomController {
         symptomService.removeSymptoms(user,symptoms);
         return new ModelAndView("redirect:/removesymptom");
     }
-
-    @GetMapping("/recordsymptom")
-    public ModelAndView recordSymptom(@RequestParam String param , Principal principal) {
-        User user = mongoUserDetailsService.findByUsername(principal.getName());
-        String[] params = param.split(",");
-        List<String> symptoms = new ArrayList<>();
-        for(int i = 0; i < params.length; i++) {
-            symptoms.add(params[i].trim());
-        }
-        ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        modelAndView.addObject("symptoms",symptoms);
-        modelAndView.setViewName("recordsymptom");
-        return modelAndView;
-    }
-
-    @PostMapping("/recordsymptom")
-    public ModelAndView recordSymptomPost(@RequestBody String str , Principal principal) {
-        User user = mongoUserDetailsService.findByUsername(principal.getName());
-        String[] pairs = str.split("&");
-        Map<String,String> map = new HashMap<>();
-
-        for(int i = 0; i < pairs.length; i++) {
-            String[] pair = pairs[i].split("=");
-            map.put(cleanString(pair[0]),cleanString(pair[1]));
-        }
-        mongoUserDetailsService.addEvent(user,map);
-        return new ModelAndView("redirect:/dashboard");
-    }
-
-    private String cleanString(String str) {
-        return str.trim().replaceAll("\\+"," ");
-    }
-
-    //lsof -i tcp:8080
-    //kill -9 pid
-    //iGud2tuC3gEkbFYzvAK8m7bLpf2GaA
-    //https://maps.googleapis.com/maps/api/geocode/json?latlng=33.8764117,-84.4664638&key=AIzaSyB5azweWSDgLBH3ex9jKpBXqcwVc785Sxw
-    //AIzaSyB5azweWSDgLBH3ex9jKpBXqcwVc785Sxw
-
 
 }

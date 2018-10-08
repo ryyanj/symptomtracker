@@ -1,9 +1,7 @@
 package com.intrepidjava.symptomtracker.services;
 
-import com.intrepidjava.symptomtracker.models.Event;
 import com.intrepidjava.symptomtracker.models.Role;
 import com.intrepidjava.symptomtracker.models.User;
-import com.intrepidjava.symptomtracker.repositories.EventRepository;
 import com.intrepidjava.symptomtracker.repositories.RoleRepository;
 import com.intrepidjava.symptomtracker.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.util.*;
 
 @Service
@@ -25,9 +22,6 @@ public class MongoUserDetailsService implements UserDetailsService {
 
     @Autowired
     private RoleRepository roleRepository;
-
-    @Autowired
-    private EventRepository eventRepository;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -57,23 +51,5 @@ public class MongoUserDetailsService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public void addEvent(User user, Map<String,String> eventMap) {
-        Event event = new Event();
-        event.setUsername(user.getEmail());
-        event.setUserid(user.getId());
-        event.setTimestamp(new Timestamp(System.currentTimeMillis()));
 
-        if(eventMap.containsKey("Latitude")) {
-            event.setLatitude(eventMap.get("Latitude"));
-            eventMap.remove("Latitude");
-        }
-
-        if(eventMap.containsKey("Longitude")) {
-            event.setLongitude(eventMap.get("Longitude"));
-            eventMap.remove("Longitude");
-        }
-
-        event.setSymptom(eventMap);
-        eventRepository.save(event);
-    }
 }
