@@ -54,16 +54,6 @@ public class LoginController {
         return modelAndView;
     }
 
-
-
-
-
-
-
-
-
-
-
     //lsof -i tcp:8080
     //kill -9 pid
     //iGud2tuC3gEkbFYzvAK8m7bLpf2GaA
