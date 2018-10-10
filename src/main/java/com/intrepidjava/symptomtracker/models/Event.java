@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class Event {
     private String userid;
 
     @NotNull
-    private Timestamp timestamp;
+    private Date timestamp;
 
     @NotEmpty
     private Map<String,String> symptom = new HashMap<>();
@@ -55,11 +56,11 @@ public class Event {
         this.symptom = symptom;
     }
 
-    public Timestamp getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 

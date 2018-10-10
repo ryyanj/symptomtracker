@@ -6,7 +6,13 @@ import com.intrepidjava.symptomtracker.repositories.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -19,7 +25,15 @@ public class EventService {
         Event event = new Event();
         event.setUsername(user.getEmail());
         event.setUserid(user.getId());
-        event.setTimestamp(new Timestamp(System.currentTimeMillis()));
+        event.setTimestamp(new Date());
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -30);
+        Date dateBefore30Days = cal.getTime();
+
+        cal.add(Calendar.DATE, +60);
+        Date dateAfter30days = cal.getTime();
+
+        List<Event> list = eventRepository.findBytimestampBetween(dateBefore30Days, dateAfter30days);
 
         if(eventMap.containsKey("Latitude")) {
             event.setLatitude(eventMap.get("Latitude"));
