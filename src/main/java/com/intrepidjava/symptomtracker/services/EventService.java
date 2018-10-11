@@ -26,7 +26,7 @@ public class EventService {
         event.setUsername(user.getEmail());
         event.setUserid(user.getId());
         event.setTimestamp(new Date());
-        
+
         if(eventMap.containsKey("Latitude")) {
             event.setLatitude(eventMap.get("Latitude"));
             eventMap.remove("Latitude");
