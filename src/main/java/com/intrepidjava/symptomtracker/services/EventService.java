@@ -33,7 +33,7 @@ public class EventService {
         cal.add(Calendar.DATE, +60);
         Date dateAfter30days = cal.getTime();
 
-        List<Event> list = eventRepository.findBytimestampBetween(dateBefore30Days, dateAfter30days);
+        List<Event> list = eventRepository.findByusernameAndtimestampBetween(user.getEmail(),dateBefore30Days, dateAfter30days);
 
         if(eventMap.containsKey("Latitude")) {
             event.setLatitude(eventMap.get("Latitude"));
