@@ -26,12 +26,6 @@ public class EventService {
         event.setUsername(user.getEmail());
         event.setUserid(user.getId());
         event.setTimestamp(new Date());
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DATE, -30);
-        Date dateBefore30Days = cal.getTime();
-
-        cal.add(Calendar.DATE, +60);
-        Date dateAfter30days = cal.getTime();
         
         if(eventMap.containsKey("Latitude")) {
             event.setLatitude(eventMap.get("Latitude"));
