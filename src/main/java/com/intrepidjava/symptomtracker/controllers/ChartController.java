@@ -32,13 +32,13 @@ public class ChartController {
         return modelAndView;
     }
 
-    @GetMapping("/chartdata")
-    @ResponseBody
-    public LineChart getChartData(@RequestParam String param) {
-
-
-        return eventService.getChartData("dog","cat");
-    }
+//    @GetMapping("/chartdata")
+//    @ResponseBody
+//    public LineChart getChartData(@RequestParam String param) {
+//
+//
+//        return eventService.getChartData("dog","cat");
+//    }
 
 
 }

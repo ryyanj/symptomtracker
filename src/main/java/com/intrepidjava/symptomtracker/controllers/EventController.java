@@ -1,5 +1,6 @@
 package com.intrepidjava.symptomtracker.controllers;
 
+import com.intrepidjava.symptomtracker.models.Event;
 import com.intrepidjava.symptomtracker.models.User;
 import com.intrepidjava.symptomtracker.services.EventService;
 import com.intrepidjava.symptomtracker.services.MongoUserDetailsService;
@@ -47,6 +48,13 @@ public class EventController {
         }
         eventService.addEvent(user,map);
         return new ModelAndView("redirect:/dashboard");
+    }
+
+    @GetMapping("/getevents")
+    @ResponseBody
+    public List<Event> getEvents(Principal principal) {
+        User user = mongoUserDetailsService.findByUsername(principal.getName());
+        return eventService.getEvents(user);
     }
 
     private String cleanString(String str) {
