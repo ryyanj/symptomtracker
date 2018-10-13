@@ -49,8 +49,8 @@ public class EventService {
         cal.add(Calendar.DATE, -20);
         Date from = cal.getTime();
         Date to = Calendar.getInstance().getTime();
-
-        return eventRepositoryImpl.findByusernameAndtimestampBetween(user.getId(),from,to);
+        List<Event> events = eventRepositoryImpl.findByusernameAndtimestampBetween(user.getId(),from,to);
+        return events;
     }
 
 //    public LineChart getChartData(String symptoms, String range) {
