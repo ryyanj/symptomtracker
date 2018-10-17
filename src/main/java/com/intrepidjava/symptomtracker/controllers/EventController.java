@@ -50,6 +50,13 @@ public class EventController {
         return new ModelAndView("redirect:/dashboard");
     }
 
+    @GetMapping("/getEvents")
+    @ResponseBody
+    public List<Event> getEvents(Principal principal) {
+        User user = mongoUserDetailsService.findByUsername(principal.getName());
+        return eventService.getEvents(user);
+    }
+
     private String cleanString(String str) {
         return str.trim().replaceAll("\\+"," ");
     }
