@@ -3,25 +3,20 @@
         getChartData();
     });
 
-// function respondCanvas() {
-//     var c = $('#summary');
-//     var ctx = c.get(0).getContext("2d");
-//     var container = c.parent();
-//
-//     var $container = $(container);
-//
-//     c.attr('width', $container.width()); //max width
-//
-//     c.attr('height', $container.height()); //max height
-//
-//     //Call a function to redraw other content (texts, images etc)
-//     var chart = new Chart(ctx).Line(chartData, {
-//         scaleOverride: true,
-//         scaleSteps: steps,
-//         scaleStepWidth: Math.ceil(max / steps),
-//         scaleStartValue: 0
-//     });
-// }
+ function respondCanvas() {
+     var c = $('#summary');
+     var ctx = c.get(0).getContext("2d");
+     var container = c.parent();
+
+     var $container = $(container);
+
+     c.attr('width', $container.width()); //max width
+
+     c.attr('height', $container.height()); //max height
+
+     //Call a function to redraw other content (texts, images etc)
+     var chart = new Chart(ctx);
+ }
 
   //var GetChartData =
   function getChartData () {
