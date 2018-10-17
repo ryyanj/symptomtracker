@@ -12,6 +12,8 @@ public class DataSet {
 
     private boolean fill;
 
+    private boolean hidden;
+
     public DataSet(){};
 
     public DataSet(List<Integer> data, String label, String borderColor, boolean fill) {
@@ -53,4 +55,11 @@ public class DataSet {
         this.fill = fill;
     }
 
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
 }
