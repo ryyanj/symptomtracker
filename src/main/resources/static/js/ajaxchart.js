@@ -10,19 +10,7 @@ function getChartData() {
         type: 'GET',
         dataType: 'json',
         success: function(chartData) {
-            var config = {
-                                       type: 'line',
-                                       data: {
-                                         labels: chartData.labels,
-                                         datasets: chartData.dataSets
-                                       },
-                                       options: {
-                                         title: {
-                                           display: true,
-                                           text: 'symptoms'
-                                         }
-                                       }
-                                     }
+            var config = getChartConfig(chartData);
             new Chart(document.getElementById("line-chart"), config);
         },
         error: function(request, error) {
@@ -31,3 +19,21 @@ function getChartData() {
     });
 };
 
+function getChartConfig(chartData) {
+
+    var config = {
+                                           type: 'line',
+                                           data: {
+                                             labels: chartData.labels,
+                                             datasets: chartData.dataSets
+                                           },
+                                           options: {
+                                             title: {
+                                               display: true,
+                                               text: 'symptoms'
+                                             }
+                                           }
+                                         }
+                                       return config;
+
+}
