@@ -10,32 +10,20 @@ function getChartData() {
         type: 'GET',
         dataType: 'json',
         success: function(d) {
-            chartData = {
+            console.log(d.dataSets)
+            new Chart(document.getElementById("line-chart"), {
+              type: 'line',
+              data: {
                 labels: d.labels,
-                datasets: d.dataSets,
-                options: {
-                    scales: {
-                        xAxes: [{
-                            type: 'time',
-                            time: {
-                                displayFormats: {
-                                    'millisecond': 'MMM DD',
-                                    'second': 'MMM DD',
-                                    'minute': 'MMM DD',
-                                    'hour': 'MMM DD',
-                                    'day': 'MMM DD',
-                                    'week': 'MMM DD',
-                                    'month': 'MMM DD',
-                                    'quarter': 'MMM DD',
-                                    'year': 'MMM DD',
-                                }
-                            }
-                        }],
-                    },
+                datasets: d.dataSets
+              },
+              options: {
+                title: {
+                  display: true,
+                  text: 'World population per region (in millions)'
                 }
-
-            };
-            var chart = new Chart(document.getElementById("line-chart"), chartData);
+              }
+            });
         },
         error: function(request, error) {
             alert("Request: " + JSON.stringify(request));

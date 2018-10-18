@@ -37,20 +37,6 @@
 <!--sidebar ends -->
 
 <section layout:fragment="content">
-    <div class="row">
-        <div class="form-group-lg col-xs-5">
-            <label class="control-label">Symptoms</label>
-            <div class="form-group-lg">
-                <div th:each="symptom : ${symptoms}" class="column_2" style="display:inline">
-        <span>
-          <input type="checkbox" th:value="${symptom}" />
-        <label class="checkbox-inline" th:text="${symptom}">Toilets</label>
-        </span>
-
-                </div>
-            </div>
-        </div>
-    </div>
     <div style="max-width:800px; max-height:100px">
         <canvas id="line-chart" width="900" height="900"></canvas>
     </div>

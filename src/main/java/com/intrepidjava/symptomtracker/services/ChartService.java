@@ -40,7 +40,7 @@ public class ChartService {
                         data.add(null);
             }
             dataSet.setData(data);
-            dataSet.setHidden(true);
+            dataSet.setHidden(false);
             dataSets.add(dataSet);
         }
         return dataSets;
