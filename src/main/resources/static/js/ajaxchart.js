@@ -22,18 +22,18 @@ function getChartData() {
 function getChartConfig(chartData) {
 
     var config = {
-                                           type: 'line',
-                                           data: {
-                                             labels: chartData.labels,
-                                             datasets: chartData.dataSets
-                                           },
-                                           options: {
-                                             title: {
-                                               display: true,
-                                               text: 'symptoms'
-                                             }
-                                           }
-                                         }
-                                       return config;
+        type: 'line',
+        data: {
+            labels: chartData.labels,
+            datasets: chartData.dataSets
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'symptoms'
+            }
+        }
+    }
+    return config;
 
 }
