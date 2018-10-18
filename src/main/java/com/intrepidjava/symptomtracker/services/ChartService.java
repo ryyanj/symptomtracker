@@ -15,18 +15,15 @@ public class ChartService {
     @Autowired
     private EventService eventService;
 
-    public List<Date> getLabelData(List<Event> events) {
+    public List<Date> getLabelData(User user, List<Event> events) {
         List<Date> labelData = new ArrayList<>();
         for(Event event: events) {
-            labelData.add(event.getTimestamp());
+            if(eventHasActiveSymptom(user.getSymptoms(), event))
+                labelData.add(event.getTimestamp());
         }
         return labelData;
     }
 
-    //algorithm
-    //get set of all symptoms
-    //pick a symtom from set
-    //if event has symptom then record it
     public List<DataSet> getDataSetData(User user, List<Event> events) {
         Set<String> userSymptoms = user.getSymptoms();
         List<DataSet> dataSets = new ArrayList<>();
@@ -36,10 +33,11 @@ public class ChartService {
             List<Integer> data = new ArrayList<>();
             for(int i = 0; i < events.size(); i++) {
                 Map<String,String> symptomMap = events.get(i).getSymptom();
-                if(symptom.contains(symptom))
-                    data.add(Integer.parseInt(symptomMap.get(symptom)));
-                else
-                    data.add(null);
+                if(eventHasActiveSymptom(user.getSymptoms(),events.get(i)))
+                    if(symptomMap.containsKey(symptom))
+                        data.add(Integer.parseInt(symptomMap.get(symptom)));
+                    else
+                        data.add(null);
             }
             dataSet.setData(data);
             dataSet.setHidden(true);
@@ -47,6 +45,13 @@ public class ChartService {
         }
         return dataSets;
 
+    }
+
+    private boolean eventHasActiveSymptom(Set<String> symptoms, Event event) {
+        for(String symptom: symptoms) {
+            if(event.getSymptom().containsKey(symptom)) return true;
+        }
+        return false;
     }
 
 

@@ -2,6 +2,8 @@ package com.intrepidjava.symptomtracker.controllers;
 
 import com.intrepidjava.symptomtracker.models.Event;
 import com.intrepidjava.symptomtracker.models.User;
+import com.intrepidjava.symptomtracker.models.charts.linechart.DataSet;
+import com.intrepidjava.symptomtracker.services.ChartService;
 import com.intrepidjava.symptomtracker.services.EventService;
 import com.intrepidjava.symptomtracker.services.MongoUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class EventController {
@@ -22,6 +21,9 @@ public class EventController {
 
     @Autowired
     private EventService eventService;
+
+    @Autowired
+    private ChartService chartService;
 
     @GetMapping("/recordevent")
     public ModelAndView getRecordEvent(@RequestParam String param) {
@@ -48,13 +50,6 @@ public class EventController {
         }
         eventService.addEvent(user,map);
         return new ModelAndView("redirect:/dashboard");
-    }
-
-    @GetMapping("/getEvents")
-    @ResponseBody
-    public List<Event> getEvents(Principal principal) {
-        User user = mongoUserDetailsService.findByUsername(principal.getName());
-        return eventService.getEvents(user);
     }
 
     private String cleanString(String str) {
