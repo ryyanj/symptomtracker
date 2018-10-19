@@ -42,11 +42,20 @@ public class ChartService {
 
             dataSet.setBorderColor(getRandomColor());
             dataSet.setData(data);
-            dataSet.setHidden(false);
-            dataSets.add(dataSet);
+            dataSet.setHidden(true);
+            //check if this symptom has any data points
+            if(listContainsInteger(data))
+                dataSets.add(dataSet);
         }
         return dataSets;
 
+    }
+
+    private boolean listContainsInteger(List<Integer> data) {
+        for(Integer i: data) {
+            if(i!=null) return true;
+        }
+        return false;
     }
 
     private boolean eventHasActiveSymptom(Set<String> symptoms, Event event) {
