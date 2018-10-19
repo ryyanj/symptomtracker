@@ -42,7 +42,7 @@ public class ChartService {
 
             dataSet.setBorderColor(getRandomColor());
             dataSet.setData(data);
-            dataSet.setHidden(true);
+            dataSet.setHidden(false);
             //check if this symptom has any data points
             if(listContainsInteger(data))
                 dataSets.add(dataSet);
