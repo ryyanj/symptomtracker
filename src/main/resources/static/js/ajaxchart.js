@@ -32,27 +32,25 @@ function getChartConfig(chartData) {
                 display: true,
                 text: 'symptoms'
             },
-             scales: {
-                  xAxes: [{
+            scales: {
+                xAxes: [{
                     type: 'time',
                     time: {
-                      displayFormats: {
-
-                        'day': 'MMM DD'
-                   
-
-                      }
+                        displayFormats: {
+                            'day': 'MMM DD'
+                        }
                     }
-                  }],
-                  yAxes: [{
-                              display: true,
-                              ticks: {
-                                  suggestedMin: 0,    // minimum will be 0, unless there is a lower value.
-                                  suggestedMax: 10,
-                                  beginAtZero: true
-                              }
-                          }]
-                }
+                }],
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        suggestedMin: 0, // minimum will be 0, unless there is a lower value.
+                        suggestedMax: 10,
+                        beginAtZero: true
+                    }
+                }]
+            },
+            responsive: true
         }
     }
     return config;
