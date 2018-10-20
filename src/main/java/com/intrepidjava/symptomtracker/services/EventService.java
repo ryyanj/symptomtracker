@@ -44,7 +44,7 @@ public class EventService {
     }
 
     public List<Event> getEvents(User user) {
-        //date 7 days ago
+
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -20);
         Date from = cal.getTime();
@@ -52,50 +52,5 @@ public class EventService {
         List<Event> events = eventRepositoryImpl.findByusernameAndtimestampBetween(user.getId(),from,to);
         return events;
     }
-
-//    public LineChart getChartData(String symptoms, String range) {
-//        String type = "line";
-//
-//        Options options = new Options();
-//        options.setTitle(getTitle());
-//
-//        Data data = new Data();
-//        data.setLabels(getLabels());
-//        data.setDatasets(getDataSets());
-//
-//
-//
-//        LineChart lineChart = new LineChart(type,data,options);
-//        return lineChart;
-//    }
-//
-//    private Title getTitle() {
-//        Title title = new Title();
-//        title.setDispaly(true);
-//        title.setText("symptom data");
-//        return title;
-//    }
-//
-//
-//    private List<Integer> getLabels() {
-//
-//        List<Integer> list = new ArrayList<>();
-//        list.add(1);list.add(2);list.add(3);
-//        return list;
-//
-//    }
-//
-//    private List<DataSet> getDataSets() {
-//        DataSet dataSet = new DataSet();
-//        List<Integer> list = new ArrayList<>();
-//        list.add(0);list.add(1);
-//        dataSet.setData(list);
-//        dataSet.setLabel("Africa");
-//        dataSet.setBorderColor("green");
-//        dataSet.setFill(false);
-//        List<DataSet> dataSetList = new ArrayList<>();
-//        dataSetList.add(dataSet);
-//        return dataSetList;
-//    }
 
 }
