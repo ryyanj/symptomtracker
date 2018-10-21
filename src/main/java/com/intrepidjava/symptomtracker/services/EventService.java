@@ -29,6 +29,7 @@ public class EventService {
         event.setUserid(user.getId());
         event.setTimestamp(new Date());
 
+        //the event map is embedded with the
         if(eventMap.containsKey("Latitude")) {
             event.setLatitude(eventMap.get("Latitude"));
             eventMap.remove("Latitude");

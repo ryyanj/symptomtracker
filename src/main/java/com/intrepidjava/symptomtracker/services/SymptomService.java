@@ -26,9 +26,7 @@ public class SymptomService {
     }
 
     private boolean symptomHasNotBeenAdded(String symptom, Set<String> symptoms) {
-        List<String> symptomList = new ArrayList<>();
-        symptomList.addAll(symptoms);
-        for(String s: symptomList) {
+        for(String s: symptoms) {
             if(symptom.toLowerCase().equals(s.toLowerCase())) return false;
         }
         return true;
